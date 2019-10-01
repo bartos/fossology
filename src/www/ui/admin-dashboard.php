@@ -73,6 +73,26 @@ class dashboard extends FO_Plugin
     return $V;
   }
 
+  function GetAllJobs($TableName, $TableLabel)
+  {
+    // $jobTypes = "'nomos', 'mimetype', 'monk', 'copyright', 'ecc', 'reuser', 'keyword', 'ojo'";
+    // $row = $this->$dbManager->getSingleRow("select count(*) from jobqueue;");
+    $rr = $this->$dbManager->getSingleRow("SELECT * from jobqueue;",array(),"getAllJobs");
+    //   "SELECT count(*) FROM jobqueue WHERE jq_type in ('nomos', 'mimetype', 'monk', 'copyright', 'ecc', 'reuser', 'keyword', 'ojo');"
+    // );
+    // $item_count = $row['cnt'];
+
+    $V = "<tr><td>fdf</td>";
+    $V .= "<td align='right'></td>";
+    
+    $V .= "<td>0</td>";
+    $V .= "<td>0</td>";
+
+    $V .= "</tr>\n";
+    return $V;
+
+  }
+
   /**
    * \brief Database Contents metrics
    * \returns html table containing metrics
@@ -104,6 +124,10 @@ class dashboard extends FO_Plugin
 
     /**** Copyright recs  ****/
     $V .= $this->DatabaseContentsRow("copyright", _("Copyrights/URLs/Emails"));
+
+    /**** All specific jobs */
+    $V .= $this->GetAllJobs("jobqueue",_("Jobs"));
+    // $V .= "<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>";
 
     $V .= "</table>\n";
 
